@@ -4,6 +4,9 @@ version = "0.1.0"
 authors = ["Malibongwe Gumede <malib2027@gmail.com>"]
 edition = "2021"
 
+[profile.release]
+strip = true
+
 [lib]
 path = "src/lib.rs"
 
