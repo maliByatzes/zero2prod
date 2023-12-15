@@ -997,6 +997,16 @@ dependencies = [
 
 [[package]]
 name = "idna"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7d20d6b07bfbc108882d88ed8e37d39636dcc260e15e30c45e6ba089610b917c"
+dependencies = [
+ "unicode-bidi",
+ "unicode-normalization",
+]
+
+[[package]]
+name = "idna"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "634d9b1461af396cad843f47fdba5597a4f9e6ddd4bfb6ff5d85028c25cb12f6"
@@ -1193,6 +1203,12 @@ dependencies = [
  "wasi",
  "windows-sys 0.48.0",
 ]
+
+[[package]]
+name = "mutually_exclusive_features"
+version = "0.0.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6d02c0b00610773bb7fc61d85e13d86c7858cbdf00e1a120bfc41bc055dbaa0e"
 
 [[package]]
 name = "native-tls"
@@ -1799,9 +1815,9 @@ dependencies = [
 
 [[package]]
 name = "serde-aux"
-version = "3.1.0"
+version = "4.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d0a77223b653fa95f3f9864f3eb25b93e4ed170687eb42d85b6b98af21d5e1de"
+checksum = "184eba62ebddb71658697c8b08822edee89970bf318c5362189f0de27f85b498"
 dependencies = [
  "chrono",
  "serde",
@@ -2403,11 +2419,12 @@ dependencies = [
 
 [[package]]
 name = "tracing-actix-web"
-version = "0.6.2"
+version = "0.7.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d725b8fa6ef307b3f4856913523337de45c47cc79271bafd7acfb39559e3a2da"
+checksum = "1fe0d5feac3f4ca21ba33496bcb1ccab58cca6412b1405ae80f0581541e0ca78"
 dependencies = [
  "actix-web",
+ "mutually_exclusive_features",
  "pin-project",
  "tracing",
  "uuid",
@@ -2550,7 +2567,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "31e6302e3bb753d46e83516cae55ae196fc0c309407cf11ab35cc51a4c2a4633"
 dependencies = [
  "form_urlencoded",
- "idna",
+ "idna 0.5.0",
  "percent-encoding",
 ]
 
@@ -2567,6 +2584,21 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5e395fcf16a7a3d8127ec99782007af141946b4795001f876d54fb0d55978560"
 dependencies = [
  "getrandom",
+]
+
+[[package]]
+name = "validator"
+version = "0.16.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b92f40481c04ff1f4f61f304d61793c7b56ff76ac1469f1beb199b1445b253bd"
+dependencies = [
+ "idna 0.4.0",
+ "lazy_static",
+ "regex",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "url",
 ]
 
 [[package]]
@@ -2894,6 +2926,7 @@ dependencies = [
  "tracing-subscriber",
  "unicode-segmentation",
  "uuid",
+ "validator",
 ]
 
 [[package]]
