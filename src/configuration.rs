@@ -2,7 +2,6 @@ use secrecy::{ExposeSecret, Secret};
 use serde_aux::field_attributes::deserialize_number_from_string;
 use sqlx::postgres::PgConnectOptions;
 use sqlx::postgres::PgSslMode;
-use unicode_segmentation::UnicodeSegementation;
 
 #[derive(serde::Deserialize)]
 pub struct Settings {
@@ -102,22 +101,22 @@ impl TryFrom<String> for Environment {
         }
     }
 }
-
-pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> HttpResponse {
-    if !is_valid_name(&form.name) {
-        return HttpResponse::BadRequest().finish()
-    }
-
-    match insert_subscriber(&pool, &form).await {
-        Ok(_) => HttpResponse::Ok().finish(),
-        Err(_) => HttpResponse::InternalServerError().finish(),
-    }
-}
-
-pub async fn is_valid_name(s: &str) -> bool {
-    let is_empty_or_whitespace = s.trim().is_empty();
-    let is_too_long = s.graphemes(true).count() > 256;
-    let forbidden_characters = ['/', '(', ')', '"', '<', '>', '\\', '{', '}'];
-    let contains_forbidden_characters = s.chars().any(|g| forbidden_characters.contains(&g));
-    !(is_empty_or_whitespace || is_too_long || contains_forbidden_characters)
-}
+//
+// pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> HttpResponse {
+//     if !is_valid_name(&form.name) {
+//         return HttpResponse::BadRequest().finish();
+//     }
+//
+//     match insert_subscriber(&pool, &form).await {
+//         Ok(_) => HttpResponse::Ok().finish(),
+//         Err(_) => HttpResponse::InternalServerError().finish(),
+//     }
+// }
+//
+// pub async fn is_valid_name(s: &str) -> bool {
+//     let is_empty_or_whitespace = s.trim().is_empty();
+//     let is_too_long = s.graphemes(true).count() > 256;
+//     let forbidden_characters = ['/', '(', ')', '"', '<', '>', '\\', '{', '}'];
+//     let contains_forbidden_characters = s.chars().any(|g| forbidden_characters.contains(&g));
+//     !(is_empty_or_whitespace || is_too_long || contains_forbidden_characters)
+// }
